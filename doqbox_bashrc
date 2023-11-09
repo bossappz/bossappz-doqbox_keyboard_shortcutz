@@ -4,21 +4,25 @@
 ### ==========================================
 ##Global Keys START ###
 export PROJECTZ_DIR=$HOME/www/projectz
-export NODE_ENV=test # test,stage,prod
+export NODE_ENV=production # keep production
 SCRIPT_DIR="scriptz";
 ##Global Keys END ###
 ##Global BIZ9 GIT START ###
 export GIT_BRANCH='main'
 export BIZ9_GIT_URL="git@github.com:bossappz";
+export BIZ9_CHANGE_REQUEST_TITLE="BiZ9-Change-Request";
 export BIZ9_CMS_TITLE="BiZ9-CMS";
 export BIZ9_CORE_TITLE="BiZ9-Core";
 export BIZ9_DOCZ_TITLE="BiZ9-Docz";
 export BIZ9_MOBILE_TITLE="BiZ9-Mobile";
 export BIZ9_SCRIPTZ_TITLE="BiZ9-Scriptz";
 export BIZ9_SERVICE_TITLE="BiZ9-Service";
+export BIZ9_SERVER_TITLE="BiZ9-Server";
 export BIZ9_TEST_TITLE="BiZ9-Test";
 export BIZ9_WEBSITE_TITLE="BiZ9-Website";
 export BIZ9_VENDOR_TITLE="BiZ9-Vendor";
+export BIZ9_VENDOR_PAYMENT_TITLE="BiZ9-Vendor-Payment";
+export BIZ9_WORKSHOP_TITLE="BiZ9-Workshop";
 ##Global BIZ9 GIT END ###
 ### ALIAS DIR START ###
 alias 9_go_projectz='cd ${PROJECTZ_DIR}'
@@ -33,29 +37,38 @@ alias 9_config_bashrc='vi ~/.bashrc'
 alias 9_config_vim='vi ~/.vimrc'
 ### ALIAS CONFIG END ###
 ### BIZ9 START ###
-alias 9_biz9_mobile_update='bash ${SCRIPT_DIR}/dq_biz9_mobile_update.sh'
-alias 9_biz9_cms_update='bash ${SCRIPT_DIR}/dq_biz9_cms_update.sh'
 alias 9_biz9_scriptz_deploy='bash ${SCRIPT_DIR}/dq_biz9_scriptz_deploy.sh'
 alias 9_biz9_info='bash ${SCRIPT_DIR}/dq_biz9_info.sh'
 alias 9_biz9_app_push='bash ${SCRIPT_DIR}/dq_biz9_app_push.sh'
 alias 9_biz9_app_update='bash ${SCRIPT_DIR}/dq_biz9_app_update.sh'
-alias 9_biz9_framework_update='bash ${SCRIPT_DIR}/dq_biz9_framework_update.sh'
-alias 9_biz9_framework_git_push='bash ${SCRIPT_DIR}/dq_biz9_framework_git_push.sh'
-alias 9_biz9_framework_git_commit='bash ${SCRIPT_DIR}/dq_biz9_framework_git_commit.sh'
+
+alias 9_biz9_git_commit='bash ${SCRIPT_DIR}/dq_biz9_git_commit.sh'
+alias 9_biz9_git_push='bash ${SCRIPT_DIR}/dq_biz9_git_push.sh'
+alias 9_biz9_branch_update='bash ${SCRIPT_DIR}/dq_biz9_branch_update.sh'
+
 alias 9_biz9_npm_publish='bash ${SCRIPT_DIR}/dq_biz9_npm_publish.sh';
 alias 9_biz9_projectz='bash ${SCRIPT_DIR}/dq_biz9_projectz.sh';
+alias 9_biz9_mongo_list_dump='bash ${SCRIPT_DIR}/dq_biz9_mongo_list_dump.sh';
+
+alias 9_biz9_mobile_deploy='bash ${SCRIPT_DIR}/dq_biz9_mobile_android_deploy.sh';
+alias 9_biz9_mobile_platform_android_add='cordova platform add android@latest'
+alias 9_biz9_mobile_platform_android_rm='cordova platform rm android'
+
+alias 9_biz9_mobile_android_icon_deploy='bash ${SCRIPT_DIR}/dq_biz9_mobile_android_icon_deploy.sh';
+alias 9_biz9_mobile_android_screen_deploy='bash ${SCRIPT_DIR}/dq_biz9_mobile_android_screen_deploy.sh';
+
+alias 9_biz9_mobile_ios_screen_deploy='bash ${SCRIPT_DIR}/dq_biz9_mobile_ios_screen_deploy.sh';
+
+alias 9_biz9_mobile_build_clean='cordova clean'
+alias 9_biz9_mobile_build_prepare='cordova prepare'
+alias 9_biz9_mobile_build_compile='cordova compile'
+alias 9_biz9_mobile_build_build='cordova build'
+
 ### BIZ9 END ###
 #
 ### CORDOVA START ###
-alias 9_cordova_platform_android_add='cordova platform add android@latest'
-alias 9_cordova_platform_android_rm='cordova platform rm android'
-alias 9_cordova_clean='cordova clean'
-alias 9_cordova_prepare='cordova prepare'
-alias 9_cordova_compile='cordova compile'
-alias 9_cordova_build='cordova build'
-alias 9_cordova_gplay_deploy='bash ${SCRIPT_DIR}/dq_cordova_gplay_deploy.sh';
-alias 9_cordova_gplay_icon='bash ${SCRIPT_DIR}/dq_cordova_gplay_icon.sh';
-alias 9_cordova_ios_screen='bash ${SCRIPT_DIR}/dq_cordova_ios_screen.sh';
+#
+
 ### CORDOVA END ###
 ### ALIAS OPEN START ###
 alias 9_open_sublime='subl '
@@ -85,9 +98,10 @@ alias 9_ec2_deploy='bash ${SCRIPT_DIR}/dq_ec2_deploy.sh';
 alias 9_ec2_test_push='bash ${SCRIPT_DIR}/dq_ec2_test_push.sh';
 ### ALIAS EC2 END ###
 ### ALIAS MONGO START ###
-alias 9_mongo_dump='bash ${SCRIPT_DIR}/dq_mongo_dump.sh';
-alias 9_mongo_list_dump='bash ${SCRIPT_DIR}/dq_mongo_list_dump.sh';
-alias 9_mongo_restore='bash ${SCRIPT_DIR}/dq_mongo_restore.sh';
+alias 9_mongo_dump='bash ${SCRIPT_DIR}/dq_biz9_mongo_dump.sh';
+alias 9_mongo_list_dump='bash ${SCRIPT_DIR}/dq_biz9_mongo_list_dump.sh';
+alias 9_mongo_view_dump='bash ${SCRIPT_DIR}/dq_biz9_mongo_view_dump.sh';
+alias 9_mongo_restore='bash ${SCRIPT_DIR}/dq_biz9_mongo_restore.sh';
 alias 9_mongo_shell='mongo --shell --port 27019';
 alias 9_mongo_start="sudo mongod --fork --config /etc/mongod.conf"
 ### ALIAS EC2 END ###
@@ -109,23 +123,33 @@ alias 9_test_box_bucket_file_update='bash kit_run_app bucket_file_update';
 alias 9_test_box_s3_photo_backup='bash kit_run_app s3_photo_backup'
 alias 9_test_box_parse_themeforest='bash kit_run_app parse_themeforest'
 alias 9_test_box_write_file='bash kit_run_app write_file';
-alias 9_test_box_send_mail='bash kit_run_app send_mail';
-alias 9_test_box_blue_send_mail='bash kit_run_app blue_send_mail';
+alias 9_test_box_photo_file_rename_update='bash kit_run_app photo_file_rename_update';
+alias 9_test_box_photo_file_resize_update='bash kit_run_app photo_file_resize_update';
+
+alias 9_test_box_brevo_mail_message_send='bash kit_run_app brevo_mail_message_send';
 alias 9_test_box_uptime='bash kit_run_app uptime';
 alias 9_test_box_run='bash kit_run_app run';
 alias 9_test_box_ping='bash kit_run_app ping'
-alias 9_test_box_stripe_make_payment='bash kit_run_app stripe_make_payment'
-alias 9_test_box_blog_post_add='bash kit_run_app blog_post'
-alias 9_test_box_product_add='bash kit_run_app product_add'
-alias 9_test_box_product_cart_checkout_cashapp='bash kit_run_app product_cart_checkout_cashapp'
-alias 9_test_box_order_product_cashapp_get='bash kit_run_app order_product_cashapp_get'
-alias 9_test_box_product_cart_get='bash kit_run_app product_cart_get'
-alias 9_test_box_product_cart_add='bash kit_run_app product_cart_add'
-alias 9_test_box_product_cart_update='bash kit_run_app product_cart_update'
-alias 9_test_box_admin_update_system='bash kit_run_app admin_update_system'
-alias 9_test_box_product_cart_checkout_pay_on_delivery='bash kit_run_app product_cart_checkout_pay_on_delivery'
-alias 9_test_box_product_cart_checkout_stripe_redirect_url='bash kit_run_app product_cart_checkout_stripe_redirect_url'
-alias 9_test_box_product_cart_checkout_stripe_card='bash kit_run_app product_cart_checkout_stripe_card'
+alias 9_test_box_admin_update_local_system='bash kit_run_app admin_update_local_system'
+alias 9_test_box_admin_update_production_system='bash kit_run_app admin_update_production_system'
+alias 9_test_box_admin_order_product_cart_add='bash kit_run_app admin_order_product_cart_add'
+alias 9_test_box_admin_order_service_cart_add='bash kit_run_app admin_order_service_cart_add'
+alias 9_test_box_admin_order_event_cart_add='bash kit_run_app admin_order_event_cart_add'
+alias 9_test_box_admin_order_product_cart_update='bash kit_run_app admin_order_product_cart_update'
+alias 9_test_box_admin_order_service_cart_update='bash kit_run_app admin_order_service_cart_update'
+alias 9_test_box_admin_order_event_cart_update='bash kit_run_app admin_order_event_cart_update'
+alias 9_test_box_admin_order_cart_detail='bash kit_run_app admin_order_cart_detail'
+
+alias 9_test_box_admin_vendor_order_checkout_free='bash kit_run_app admin_vendor_order_checkout_free'
+alias 9_test_box_admin_vendor_order_checkout_cashapp='bash kit_run_app admin_vendor_order_checkout_cashapp'
+alias 9_test_box_admin_vendor_order_checkout_striperedirecturl='bash kit_run_app admin_vendor_order_checkout_striperedirecturl'
+
+alias 9_test_box_admin_order_checkout_cashapp='bash kit_run_app admin_order_checkout_cashapp'
+alias 9_test_box_admin_order_checkout_zelle='bash kit_run_app admin_order_checkout_zelle'
+alias 9_test_box_admin_order_checkout_pay_on_delivery='bash kit_run_app admin_order_checkout_pay_on_delivery'
+alias 9_test_box_admin_order_checkout_stripe_card='bash kit_run_app admin_order_checkout_stripe_card'
+alias 9_test_box_admin_order_checkout_success='bash kit_run_app admin_order_checkout_success'
+
 alias 9_test_mongo_account_validate='bash kit_run_mongo test_account_validate'
 alias 9_test_mongo_item_update='bash kit_run_mongo test_item_update'
 alias 9_test_mongo_item_get_cache='bash kit_run_mongo get_item_cache'
@@ -172,6 +196,7 @@ alias 9_test_mongo_sub_page_get='bash kit_run_mongo test_sub_page_get'
 alias 9_test_mongo_sub_page_get='bash kit_run_mongo test_sub_page_get'
 alias 9_test_mongo_order_get='bash kit_run_mongo test_order_get'
 alias 9_test_mongo_order_get_by_tbl_id='bash kit_run_mongo test_order_get_by_tbl_id'
+alias 9_test_mongo_count='bash kit_run_mongo test_count'
 
 ### ALIAS TEST END ###
 ### ALIAS ANDROID START ###
